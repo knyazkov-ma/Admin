@@ -1,0 +1,100 @@
+﻿@using System.Threading
+@using System.Web.Optimization
+@using Admin.WebApp.Helpers
+@using Admin.WebApp.Resources
+@model Admin.WebApp.Models.AppLayoutModel
+@using Admin.Web.Common.Helpers
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@Resource.AppName</title>
+
+    <link rel="shortcut icon" href="~/favicon.ico">
+
+    @Styles.Render("~/Bundles/App/vendor/css")
+    @Styles.Render("~/Bundles/App/Main/css")
+    
+    
+    <script type="text/javascript" src="@Url.Content("~/App/Resources/jsResource.js?"+Guid.NewGuid())"></script>
+    @Scripts.Render("~/Bundles/App/vendor/js")
+   
+    
+    <script>
+        //Localizing momentjs
+        moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
+    </script>
+
+    
+    @Scripts.Render("~/Bundles/App/Main/js")
+    <script>
+        var culture = '@ViewBag.CurrentCulture';
+        var menu = @Html.ToJson((IDictionary<string, string>)ViewBag.Menu);
+
+    </script>
+
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0;
+            
+            
+        }
+        .wrapper {
+            min-height: 100%;
+            height: auto !important;
+            height: 100%;
+            margin: 0 0 -80px 0; /* отрицательный нижний отступ на высоту футера */
+            padding: 0;
+        }
+        .footer-push, .footer {
+            height: 80px;
+            margin: 0;
+            padding-top: 20px;
+        }
+
+        .footer {
+            background-color: #e7e7e7;
+            vertical-align:middle;
+        }
+
+        .modal-open {
+            overflow: visible;
+        }
+
+        .modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom {
+            padding-right: 0px !important;
+            
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div ng-app="app">
+
+            <div ng-controller="app.views.layout as vm">
+
+                <div ng-include="vm.headerTempleteUrl"></div>
+
+                <div>
+                    <div ui-view></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer-push"></div>
+    </div>
+    <div class="footer">
+        <div class="row">
+            
+        </div>
+    </div>
+   
+</body>
+</html>

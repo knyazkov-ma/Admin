@@ -1,0 +1,42 @@
+﻿@using Admin.WebApp.Models
+@using Admin.WebApp.Resources
+
+@model LoginViewModel
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@using (@Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl },  FormMethod.Post))
+{
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName, new {@class = "form-control", required = true, autofocus = true })
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new {@class = "form-control", required = true })
+    </div>
+
+    
+
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.RememberMe) @Resource.Label_RememberMe
+        </label>
+    </div>
+           
+    <div style="text-align: center">
+        <button class="btn btn-lg btn-block btn-default center-block" style="width:60%" type="submit">@Resource.Action_Login</button>
+    </div>
+
+    <div style="padding-top: 20px" class="text-center">
+        <a href="@Url.Action("RecoveryPassword", "Account")">@Resource.Label_ForgetPassword</a>
+    </div>
+}
+
+

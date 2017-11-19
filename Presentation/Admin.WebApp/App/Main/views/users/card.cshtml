@@ -1,0 +1,85 @@
+﻿@using Admin.WebApp.Resources
+
+<div class="modal fade" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close({ cancel: true }, 300)" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@Resource.Label_User <span ng-show="vm.Id > 0">[@Resource.Text_EditRecord.ToLower()]</span></h4>
+            </div>
+            <div class="modal-body">
+
+                <div>
+
+                    <div ng-show="vm.errors.ErrorGeneralMessage.Errors.length > 0" class="alert alert-danger" role="alert">{{vm.errors.ErrorGeneralMessage.Errors[0].ErrorMessage}}</div>
+                    
+                    <div class="form-group">
+                        <label for="userType">@Resource.Label_UserType:</label>
+                        
+                        <select id="userType" class="form-control" style="width: 100%" ng-model="vm.user.UserType.Id"
+                                ng-options="option.Id as option.Name for option in vm.userTypes"></select>
+
+                        <ul>
+                            <li class="error" data-ng-repeat="error in vm.errors.UserType.Errors">{{error.ErrorMessage}}</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userName">@Resource.Label_UserName:</label>
+                        
+                        <input id="userName"
+                            class="form-control {{ {true: 'error', false: ''}[vm.errors.Name !=null] }}"
+                            ng-model="vm.user.Name"
+                            placeholder="@Resource.Placeholder_UserName...">
+
+                        <ul>
+                            <li class="error" data-ng-repeat="error in vm.errors.Name.Errors">{{error.ErrorMessage}}</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">@Resource.Label_Email:</label>
+
+                        <input id="email"
+                               class="form-control {{ {true: 'error', false: ''}[vm.errors.Email !=null] }}"
+                               ng-model="vm.user.Email"
+                               placeholder="@Resource.Placeholder_Email...">
+
+                        <ul>
+                            <li class="error" data-ng-repeat="error in vm.errors.Email.Errors">{{error.ErrorMessage}}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">@Resource.Label_Password:</label>
+
+                        <input id="password"
+                               class="form-control {{ {true: 'error', false: ''}[vm.errors.Password !=null] }}"
+                               ng-model="vm.user.Password"
+                               placeholder="@Resource.Placeholder_Password...">
+
+                        <ul>
+                            <li class="error" data-ng-repeat="error in vm.errors.Password.Errors">{{error.ErrorMessage}}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="disabled">@Resource.Label_Disabled:</label>
+
+                        <input id="disabled" type="checkbox"
+                               ng-model="vm.user.Disabled">
+
+                        <ul>
+                            <li class="error" data-ng-repeat="error in vm.errors.Disabled.Errors">{{error.ErrorMessage}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="vm.save()" ng-disabled="vm.invalidForm()" class="btn {{ {true: 'btn-primary', false: 'btn-success'}[vm.invalidForm() == true] }}">@Resource.Action_Save</button>
+                <button type="button" ng-click="vm.cancel()" class="btn btn-info fa-align-right">@Resource.Action_Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
