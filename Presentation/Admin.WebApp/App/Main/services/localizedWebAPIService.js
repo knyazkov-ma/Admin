@@ -8,7 +8,7 @@
             var _get = function (uri) {
                 //culture - глобальная переменная, находится в \App\Main\views\layout\layout.cshtml
                 //устанавливается на стороне сервера в Razor
-                return "/api/" + culture + "/" + uri;
+                return baseUrl + "/api/" + culture + "/" + uri;
             };
                        
             

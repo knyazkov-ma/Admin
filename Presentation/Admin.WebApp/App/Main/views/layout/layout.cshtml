@@ -35,7 +35,7 @@
     <script>
         var culture = '@ViewBag.CurrentCulture';
         var menu = @Html.ToJson((IDictionary<string, string>)ViewBag.Menu);
-
+        var baseUrl = "@Request.Url.GetLeftPart(UriPartial.Authority)@System.Web.HttpRuntime.AppDomainAppVirtualPath";
     </script>
 
     <style type="text/css">

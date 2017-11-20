@@ -58,7 +58,7 @@
 
         vm.edit = function (id) {
             modalService.showModal({
-                templateUrl: "/AngularTemplate/UserCard",
+                templateUrl: baseUrl + "/AngularTemplate/UserCard",
                 controller: "app.views.users.card as vm",
                 inputs: {
                     params: { Id: id }
